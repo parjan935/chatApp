@@ -58,7 +58,7 @@ const SignUp = () => {
           />
           <button type="submit" className="bg-green-500 hover:bg-green-600 p-3 py-2 w-1/2 mx-auto mt-5 rounded-lg">Register</button>
           <p className="w-fit mx-auto mt-2">
-            Already a user ?<Link to="/login" className="text-blue-500 underline">Login</Link>
+            Already a user ?<Link to="/login" className="text-blue-500 underline"> Login </Link>
           </p>
         </form>
       </div>
