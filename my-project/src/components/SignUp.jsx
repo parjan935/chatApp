@@ -31,6 +31,7 @@ const SignUp = () => {
     }
   return (
     <div>
+
       <div className="flex justify-center items-center h-screen">
         <form onSubmit={handleSignupSubmit} className="flex flex-col bg-gray-300 w-[400px] h-fit p-5 px-8 rounded-xl">
             <h1 className="text-3xl my-3 font-bold w-fit mx-auto">Signup</h1>
@@ -57,7 +58,7 @@ const SignUp = () => {
           />
           <button type="submit" className="bg-green-500 hover:bg-green-600 p-3 py-2 w-1/2 mx-auto mt-5 rounded-lg">Register</button>
           <p className="w-fit mx-auto mt-2">
-            Already a user ?<Link to="/login" className="text-blue-500 underline"> Login</Link>
+            Already a user ?<Link to="/login" className="text-blue-500 underline">Login</Link>
           </p>
         </form>
       </div>
