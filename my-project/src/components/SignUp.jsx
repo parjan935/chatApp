@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
     const [name,setName]=useState("")
     const [mobile,setMobile]=useState("")
     const [password,setPassword]=useState("")
 
+    const navigate=useNavigate();
 
-    const handleSignupSubmit=(e)=>{
+    const handleSignupSubmit=async (e)=>{
+      const data={
+        userName:name,
+        MobileNo:mobile,
+        passWord:password
+      }
         e.preventDefault();
-        try{
-
-        }
-        catch{
-
+        try {
+          const response=await axios.post('http://localhost:5000/user/register',data)
+          // console.log(response)
+          console.log(response.data.message)
+          localStorage.setItem('Token',response.data.token)
+          alert("registration Successfull!")
+          navigate('/chat')
+    
+        } catch (error) {
+          console.log(error)
+          alert(error)
         }
     }
   return (
@@ -38,12 +50,12 @@ const SignUp = () => {
           />
           <label htmlFor="">Password</label>
           <input
-            type="text"
+            type="password"
             onChange={(e)=>setPassword(e.target.value)}
             placeholder="Enter Password"
             className=" p-2 my-1 rounded-lg border-2"
           />
-          <button type="submit" className="bg-green-500 hover:bg-green-600 p-3 py-2 w-1/2 mx-auto mt-5 rounded-lg">Login</button>
+          <button type="submit" className="bg-green-500 hover:bg-green-600 p-3 py-2 w-1/2 mx-auto mt-5 rounded-lg">Register</button>
           <p className="w-fit mx-auto mt-2">
             Already a user ?<Link to="/login" className="text-blue-500 underline"> Login</Link>
           </p>

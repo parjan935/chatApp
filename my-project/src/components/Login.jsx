@@ -7,12 +7,27 @@ const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-  const handleLoginSubmit = (e) => {
+  const handleLoginSubmit = async (e) => {
+    const data = {
+      userName: name,
+      passWord: password,
+    };
     e.preventDefault();
-    navigate('/Chat')
+    try {
+      const response = await axios.post("http://localhost:5000/user/login", data);
+      // console.log(response);
+      console.log(response.data.token);
+      localStorage.setItem('Token',response.data.token)
+      alert("Login Successfull!");
+      navigate("/chat");
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
   };
+  
   return (
     <div>
       <div className="flex justify-center items-center h-screen">
@@ -30,7 +45,7 @@ const Login = () => {
           />
           <label htmlFor="">Password</label>
           <input
-            type="text"
+            type="password"
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter Password"
             className=" p-2 my-1 rounded-lg border-2"
@@ -42,7 +57,11 @@ const Login = () => {
             Login
           </button>
           <p className="w-fit mx-auto mt-2">
-            New user ?<Link to="/signup" className="text-blue-500 underline"> Signup</Link>
+            New user ?
+            <Link to="/signup" className="text-blue-500 underline">
+              {" "}
+              Signup
+            </Link>
           </p>
         </form>
       </div>

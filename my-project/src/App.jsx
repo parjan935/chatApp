@@ -7,12 +7,13 @@ import Chatting from "./components/Chatting";
 
 
 const App = () => {
+  const socket=null;
   return (
     <Routes>
-      <Route path="/" element={<Dashboard/>}/>
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/chat" element={<Chatting />} />
+      <Route path="/" element={<Dashboard socket={socket}/>}/>
+      <Route path="/login" element={<Login socket={socket}/>} />
+      <Route path="/signup" element={<SignUp socket={socket}/>} />
+      <Route path="/chat" element={<Chatting socket={socket}/>} />
     </Routes>
   );
 };
